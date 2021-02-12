@@ -1,7 +1,9 @@
 <script lang="ts">
+  import { Tooltip } from "../Component";
   import { Button } from "../Primitive";
 
   import type { ButtonVariant } from "../../src/style";
+  import { CSSPosition } from "../../src/style";
   import * as notification from "../../src/notification";
   import * as error from "../../src/error";
   import * as transaction from "../../src/transaction";
@@ -12,6 +14,8 @@
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   export let errorLabel: string;
   export let disabled = false;
+
+  $: tooltip = disabled ? "Waiting for ongoing transaction..." : "";
 
   let running = false;
 
@@ -43,7 +47,9 @@
 </style>
 
 <span class="tx-button" class:running data-cy={dataCy}>
-  <Button disabled={disabled || running} {variant} on:click={userDidClick}>
-    <slot />
-  </Button>
+  <Tooltip value={tooltip} position={CSSPosition.Top}>
+    <Button disabled={disabled || running} {variant} on:click={userDidClick}>
+      <slot />
+    </Button>
+  </Tooltip>
 </span>
