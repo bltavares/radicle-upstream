@@ -254,3 +254,7 @@ export const removeSeed = (seed: string): void => {
   });
   seedValidation.reset();
 };
+
+export const __test__ = {
+  VALID_SEED_MATCH,
+};
