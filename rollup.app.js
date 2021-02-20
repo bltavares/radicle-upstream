@@ -81,17 +81,20 @@ export default {
 
   // Skip certain warnings originated by third-party libraries
   onwarn: function (warning) {
+    const id = warning.id || "";
+    const importer = warning.importer || "";
+
     if (
       warning.code === "THIS_IS_UNDEFINED" &&
-      warning.id.includes("node_modules/@ethersproject/")
+      id.includes("node_modules/@ethersproject/")
     ) {
       return;
     }
 
     if (
       (warning.code === "CIRCULAR_DEPENDENCY" &&
-        warning.importer.includes("node_modules/readable-stream/")) ||
-      warning.importer.includes("semver")
+        importer.includes("node_modules/readable-stream/")) ||
+      importer.includes("semver")
     ) {
       return;
     }
