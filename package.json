@@ -34,6 +34,14 @@
         "to": "./"
       },
       {
+        "from": "target/release/radicle-proxy.exe",
+        "to": "./"
+      },
+      {
+        "from": "target/release/git-remote-rad.exe",
+        "to": "./"
+      },
+      {
         "from": "proxy/assets",
         "to": "assets"
       }
@@ -108,6 +116,7 @@
     "prettier": "^2.2.1",
     "prettier-plugin-svelte": "^1.4.2",
     "prompts": "^2.4.0",
+    "rimraf": "^3.0.2",
     "rollup": "^2.35.1",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-livereload": "^2.0.0",
@@ -150,8 +159,8 @@
     "_private:test:integration": "wait-on tcp:17246 && yarn _private:rollup:build && yarn run cypress run; status=$?; [ \"$CI\" = true ] && kill `pidof radicle-proxy`; exit $status",
     "_private:test:integration:debug": "wait-on tcp:17246 && yarn run cypress open",
     "_private:electron:start": "wait-on ./public/bundle.js ./native/main.comp.js && cross-env NODE_ENV=development electron .",
-    "_private:dist:clean": "rm -rf ./dist && mkdir ./dist && yarn _private:proxy:clean && yarn _private:rollup:clean",
-    "_private:rollup:clean": "rm -rf public/bundle.* && rm -f native/main.comp.js",
+    "_private:dist:clean": "rimraf ./dist && mkdir dist && yarn _private:proxy:clean && yarn _private:rollup:clean",
+    "_private:rollup:clean": "rimraf public/bundle.* && rimraf native/main.comp.js",
     "_private:prettier": "prettier \"**/*.@(js|ts|json|svelte|css|html)\" --ignore-path .gitignore",
     "_private:proxy:build": "cargo build --all-features --all-targets",
     "_private:proxy:build:release": "cargo build --release",
