@@ -129,6 +129,7 @@
   },
   "scripts": {
     "start": "cross-env RADICLE_UPSTREAM_PROXY_PATH=../target/release/radicle-proxy RADICLE_UPSTREAM_PROXY_ARGS=\"--default-seed hynewpywqj6x4mxgj7sojhue3erucyexiyhobxx4du9w66hxhbfqbw@seedling.radicle.xyz:12345\" yarn _private:start",
+    "start:win": "cross-env RADICLE_UPSTREAM_PROXY_PATH=../target/release/radicle-proxy.exe RADICLE_UPSTREAM_PROXY_ARGS=\"--default-seed hynewpywqj6x4mxgj7sojhue3erucyexiyhobxx4du9w66hxhbfqbw@seedling.radicle.xyz:12345\" yarn _private:start",
     "start:dev": "cross-env RADICLE_UPSTREAM_PROXY_PATH=../target/debug/radicle-proxy RADICLE_UPSTREAM_PROXY_ARGS=\"--default-seed hynewpywqj6x4mxgj7sojhue3erucyexiyhobxx4du9w66hxhbfqbw@seedling.radicle.xyz:12345\" yarn _private:start:dev",
     "start:test": "cross-env RADICLE_UPSTREAM_PROXY_PATH=../target/release/radicle-proxy RADICLE_UPSTREAM_PROXY_ARGS=\"--test\" yarn _private:start",
     "ethereum:start": "./scripts/ethereum-dev-node.sh",

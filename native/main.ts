@@ -32,7 +32,8 @@ if (isDev) {
   }
 } else {
   // Packaged app, i.e. production.
-  proxyPath = path.join(__dirname, "../../radicle-proxy");
+  const proxy = process.platform === "win32" ? "../../radicle-proxy.exe" : "../../radicle-proxy";
+  proxyPath = path.join(__dirname, proxy);
   proxyArgs = [
     "--default-seed",
     "hynewpywqj6x4mxgj7sojhue3erucyexiyhobxx4du9w66hxhbfqbw@seedling.radicle.xyz:12345",
